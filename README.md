@@ -19,6 +19,16 @@ The service is created using token-based authentication, WebSocket communication
 8. Run the application: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 
 
+## Directory Structure
+- .env : This file contains the environment variables
+- app.py : This file contains the fit tracker endpoints
+- create_tables.py : This file is used to create the tables in the database
+- database_engine.py :
+- model.py - 
+
+## Logging
+All loggings are saved in fit_tracker_logs.log file
+
 ## Usage
 Once the application is up and running, visit http://localhost:8000/docs to view and exceute the endpoints in your browser.
 
