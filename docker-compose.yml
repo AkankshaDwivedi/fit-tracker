@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  # Fit Tracker application service
+  app:
+    build: .
+    container_name: fit-tracker-app
+    restart: always
+    ports:
+      - "8000:8000"  # Expose app on port 8000
+    environment:
+      - CLIENT_ID=${CLIENT_ID}
+      - CLIENT_SECRET=${CLIENT_SECRET}
+      - BASE_URL=${BASE_URL}
+      - WEBSOCKET_BASE_URL=${WEBSOCKET_BASE_URL}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PORT=${MYSQL_PORT}
+    depends_on:
+      - db  # Make sure db service is up before app starts
+    volumes:
+      - .:/app  # Mount current directory to /app in the container
+    networks:
+      - fit_tracker_network
+    command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  # MySQL database service
+  db:
+    image: mysql:8.0
+    container_name: fit-tracker-db
+    restart: always
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=${MYSQL_ALLOW_EMPTY_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persist MySQL data on host machine
+    networks:
+      - fit_tracker_network
+
+volumes:
+  mysql_data:  # Named volume to persist data
+
+networks:
+  fit_tracker_network:
+    driver: bridge
