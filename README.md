@@ -19,10 +19,10 @@ The service is created using token-based authentication, WebSocket communication
    * Before using Docker, ensure it is installed on your system.
    * docker --version: To verify Docker is correctly installed.
 
-   # For project startup, use docker-compose up.
+   #### For project startup, use docker-compose up.
    * docker-compose up: To build and start the containers.
 
-   # Adding additional docker commands
+   #### Adding additional docker commands
    * docker-compose down: Stops all running containers and removes them.
    * docker ps: To list all running containers.
    * docker stop <container_id_or_name>: To stop a running container.
