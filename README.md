@@ -7,8 +7,8 @@ The service is created using token-based authentication, WebSocket communication
 
 ## Installation
 
-1. Clone the repository: git clone
-   * https://github.com/AkankshaDwivedi/fit-tracker.git
+1. Clone the repository: 
+   * git clone https://github.com/AkankshaDwivedi/fit-tracker.git
 3. Navigate to the project directory:
    * cd fit-tracker-api
 5. Create Database in the choice of your workbench:
