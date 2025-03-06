@@ -1,6 +1,6 @@
 # Fit Tracker Application
 
-Fit Tracker API is a web service that interacts with a fit tracker device, retrieves user data (steps, heart rate, MET, height, weight), 
+Fit Tracker API is a web service implemented using FastAPI that interacts with a fit tracker device, retrieves user data (steps, heart rate, MET, height, weight), 
 stores it in a database, and provides endpoints to access and export the data. 
 The service is created using token-based authentication, WebSocket communication for real-time data.
 
