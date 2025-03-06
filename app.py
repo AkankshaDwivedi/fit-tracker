@@ -32,7 +32,10 @@ app = FastAPI()
 
 @app.get("/get_token", include_in_schema=False)
 async def get_token():
-
+    """
+    HTTP GET method to fetch the token required for authentictaing the endpoints.
+    This endpoint is not exposed.
+    """
     try:
         data={
             "clientId": client_id,
@@ -50,10 +53,13 @@ async def get_token():
         raise HTTPException(status_code=500, detail=f"An error occurred while requesting the token: {e}")
     
 
-
 # Startup event handler and run websocket connection as a background task
 @app.on_event("startup")
 async def startup_event():
+    """This function is exceted on startup. It fetches an authentication token asynchronously.
+    It creates a background task to connect to a fitness tracker via WebSocket.
+    The backgroud task receives the information from the websocket every minute.
+    """
     try:
         logger.info("Starting the application!")
         token = await get_token()
@@ -67,6 +73,8 @@ async def startup_event():
 
 
 def decode_data(message):
+    """ This is a utility function to decode the base64 encoded data that is received from the fit tracker websocket.
+    """
     decoded_bytes = base64.b64decode(message)
     decoded_message = decoded_bytes.decode('utf-8')
     decoded_message = json.loads(decoded_message)
@@ -75,7 +83,10 @@ def decode_data(message):
 
 
 async def connect_to_fit_tracker(token: str):
-    
+    """ This is an asynchronous function that establishes a webSocket connection to the server with an authorization token.
+    It receives and decodes messages sent by the webSocket server.Once the user-related data is extracted it fetches 
+    additional data (height and weight) for the user. Finally it saves the user data to a database.
+    """
     websocket_url = f"{websocket_base_url}//api/v1/traces"
     
     # Connect to WebSocket with Authorization token
@@ -118,7 +129,9 @@ async def connect_to_fit_tracker(token: str):
 
 @app.get("/get_height_weight", include_in_schema=False)
 async def get_height_weight(user_id): 
-
+    """ This endpoint is used to get the height and weight of the user from the fit tracker service.
+    This endpoint is not exposed.
+    """
     url = f"{base_url}//api/v1/users/{user_id}"
     token = await get_token()
     logger.info("Token retrieved successfully.")
