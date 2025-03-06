@@ -9,21 +9,26 @@ The service is created using token-based authentication, WebSocket communication
 
 1. Clone the repository: 
    * git clone https://github.com/AkankshaDwivedi/fit-tracker.git
-3. Navigate to the project directory:
+2. Navigate to the project directory:
    * cd fit-tracker
-5. Create Database in the choice of your workbench:
+3. Create Database in the choice of your workbench:
    * fit_tracker
-7. For creating the tables use command:
+4. For creating the tables use command:
    * python3 create_tables.py
-8. Create a virtual environment:
-   * python3 -m venv venv
-   * source venv/bin/activate
-9. Install dependencies:
-   * pip install -r requirements.txt
-11. Set up environment variables:
-    * Create an .env file
-13. Run the application: 
-    * uvicorn app:app --host 0.0.0.0 --port 8000 --reload
+5. Run the app as a docker container:
+   * Before using Docker, ensure it is installed on your system.
+   * docker --version: To verify Docker is correctly installed.
+
+   # For project startup, use docker-compose up.
+   * docker-compose up: To build and start the containers.
+
+   # Adding additional docker commands
+   * docker-compose down: Stops all running containers and removes them.
+   * docker ps: To list all running containers.
+   * docker stop <container_id_or_name>: To stop a running container.
+   * docker start <container_id_or_name>: To start a stopped container.
+   * docker rm <container_id_or_name>: To remove a stopped container.
+   * docker logs <container_id_or_name>: To view logs of a container.
 
 
 ## Directory Structure
