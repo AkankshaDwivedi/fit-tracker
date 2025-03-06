@@ -10,7 +10,7 @@ The service is created using token-based authentication, WebSocket communication
 1. Clone the repository: 
    * git clone https://github.com/AkankshaDwivedi/fit-tracker.git
 3. Navigate to the project directory:
-   * cd fit-tracker-api
+   * cd fit-tracker
 5. Create Database in the choice of your workbench:
    * fit_tracker
 7. For creating the tables use command:
@@ -22,8 +22,8 @@ The service is created using token-based authentication, WebSocket communication
    * pip install -r requirements.txt
 11. Set up environment variables:
     * Create an .env file
-13. Run the application: uvicorn app:
-    * app --host 0.0.0.0 --port 8000 --reload
+13. Run the application: 
+    * uvicorn app:app --host 0.0.0.0 --port 8000 --reload
 
 
 ## Directory Structure
