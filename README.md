@@ -53,8 +53,8 @@ Listing the endpoints exposed via fit tracker api.
 
 Adding response for the endpoint:
 1. Get User Info (/users/{user_id}
-* Response: A JSON response containing the user data, including user_id, steps, heartbeat, met, height and weight.
-  <img width="504" alt="image" src="https://github.com/user-attachments/assets/78488b4a-b97e-40b2-8cfb-f9845991dfa6" />
+* Response: A JSON response containing latest 15 entries for the user data.
+  <img width="504" alt="image" src="https://github.com/user-attachments/assets/c09ded0b-8c58-4a1a-8517-0e9913cd01a7" />
 
 2. Get And Store Summary Data (/user/get-summary/{user_id})
 * Response: A JSON response containing user_id, total_steps, distance, average_heart_beat kcal_burned and date.
