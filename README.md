@@ -27,6 +27,7 @@ The service is created using token-based authentication, WebSocket communication
 
 
 ## Directory Structure
+
 - .env : This file store environment-specific variables, such as API keys, database credentials, and configuration settings
 - README.md : This file is the main documentation for a project. It helps developers set up the project and provides the necessary information.
 - app.py : This file contains the endpoints for the Fit Tracker application.
@@ -36,26 +37,49 @@ The service is created using token-based authentication, WebSocket communication
 - requirements.txt: This file includes a list of all the Python dependencies that the project needs to run.
 - settings.py: This file includes configuration and environment variables required to set up the project.
 
+
 ## Logging
+
 All loggings are saved in fit_tracker_logs.log file
 
-## Usage
+## API Endpoints Usage
+
 Once the application is up and running, visit http://localhost:8000/docs to view and exceute the endpoints in your browser.
 
+Listing the endpoints exposed via fit tracker api.
+<img width="668" alt="image" src="https://github.com/user-attachments/assets/0e1a1d31-e357-4619-b176-bdf89cd8144d" />
 
-## API Endpoints
+## API Endpoints Response
+
+Adding response for the endpoint:
+1. Get User Info (/users/{user_id}
+* Response: A JSON response containing the user data, including user_id, steps, heartbeat, met, height and weight.
+  <img width="504" alt="image" src="https://github.com/user-attachments/assets/78488b4a-b97e-40b2-8cfb-f9845991dfa6" />
+
+2. Get And Store Summary Data (/user/get-summary/{user_id})
+* Response: A JSON response containing user_id, total_steps, distance, average_heart_beat kcal_burned and date.
+  <img width="504" alt="image" src="https://github.com/user-attachments/assets/564d0659-258c-40a8-a46f-d076760e8a98" />
+
+3. Export Data CSV (/export/csv)
+* Response: A CSV file including user_id, total_steps, distance, average_heart_beat kcal_burned and date.
+  <img width="504" alt="image" src="https://github.com/user-attachments/assets/a1f897ea-9530-4ebc-84d5-ff3c029162f8" />
+
+
+## API Endpoints Documentation
+
 To view the endpoints documentation, visit http://localhost:8000/redoc
 
 1. Get User Info
 <img width="963" alt="image" src="https://github.com/user-attachments/assets/00bc6831-e4f5-4b9b-952a-bfe795fb1fbc" /><br>
 
 2. Get And Store Summary Data
-<img width="986" alt="image" src="https://github.com/user-attachments/assets/1bf9f3c3-a472-4b5a-8a96-d8ae5a0f5989" />
+<img width="963" alt="image" src="https://github.com/user-attachments/assets/1bf9f3c3-a472-4b5a-8a96-d8ae5a0f5989" /><br>
 
 3. Export Data CSV
-<img width="987" alt="image" src="https://github.com/user-attachments/assets/07010982-6fc3-48b7-8476-84e1eb7be869" />
+<img width="963" alt="image" src="https://github.com/user-attachments/assets/07010982-6fc3-48b7-8476-84e1eb7be869" /><br>
 
 ## WebSocket Integration
+
 The application connects to a WebSocket server to retrieve real-time fitness data. When the WebSocket connection is established, user data like steps, heart rate, and MET are received and saved to the database.
 
 WebSocket URL: <websocket_base_url>/api/v1/traces
