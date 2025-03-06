@@ -38,9 +38,13 @@ The service is created using token-based authentication, WebSocket communication
 - app.py : This file contains the endpoints for the Fit Tracker application.
 - create_tables.py : This file is used to create the tables in the database.
 - database_engine.py : This file contains the database configuration for the project, including: database connection setup, engine creation.
+- docker-compose.yml : This file is used to define and configure multi-container Docker applications, fit-tracker-app and db in this case.
+- dockerfile : This file contains a series of instructions on how to build a Docker image.
 - models.py: This file contains the database models and Pydantic schemas for handling user fitness data and daily summaries.
 - requirements.txt: This file includes a list of all the Python dependencies that the project needs to run.
+- response_get_summary.json/response_get_user_info.json: Response from the API.
 - settings.py: This file includes configuration and environment variables required to set up the project.
+- user_data.csv: CSV file exported from the API.
 
 
 ## Logging
