@@ -1,6 +1,8 @@
 
 import asyncio
+import base64
 from database_engine import get_db
+from datetime import datetime
 from fastapi import FastAPI, HTTPException, Depends
 from fastapi.responses import StreamingResponse
 import logging
@@ -10,12 +12,8 @@ import json
 import requests
 from settings import client_id, client_secret, base_url, websocket_base_url
 from sqlalchemy.orm import Session
-
+from typing import List
 import websockets
-import base64
-import time
-from models import UserData
-from datetime import datetime
 
 
 # Initialize and set logging configuration
@@ -140,10 +138,10 @@ async def get_height_weight(user_id):
         raise HTTPException(status_code=500, detail=f"An error occurred while fetching the user details: {e}")
 
 
-@app.get("/users/{user_id}", response_model=UserResponse)
+@app.get("/users/{user_id}", response_model=List[UserResponse])
 def get_user_info(user_id: str, db: Session = Depends(get_db)):
     """
-    The HTTP GET method is used to retrieve user information by user_id.
+    The HTTP GET method is used to retrieve user information by user_id for the latest 15 entries.
     This endpoint fetches user details such as steps, heartbeat, met, height and weight from the database.
 
     **Parameters**:
@@ -158,13 +156,13 @@ def get_user_info(user_id: str, db: Session = Depends(get_db)):
     """
 
     try:
-        user = db.query(UserData).filter(UserData.user_id == user_id).first()
+        user = db.query(UserData).filter(UserData.user_id == user_id).order_by(UserData.timestamp.desc()).limit(15).all()
 
         if user is None:
             logger.warning(f"User with user_id {user_id} not found.")
             raise HTTPException(status_code=404, detail=f"User with user_id {user_id} not found")
         
-        logger.info(f"User found: {user.user_id}, steps: {user.steps}, heart_beat: {user.heart_beat}, met: {user.met}, height: {user.height}, weight: {user.weight}.")           
+        logger.info(f"Latest 15 entries of the user found.")
         return user
     except requests.RequestException as e:
         logger.error(f"An error occurred while fetching user data: {e}")
